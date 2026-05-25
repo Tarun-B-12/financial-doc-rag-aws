@@ -48,39 +48,7 @@ flowchart TD
     style E fill:#EEEDFE,stroke:#7F77DD,color:#3C3489
     style F fill:#E1F5EE,stroke:#1D9E75,color:#085041
 ```
-```text
-SEC EDGAR Public Filings
-        |
-        v
-[ AWS S3 Bucket ]
-  stores raw HTM documents
-        |
-        v
-[ Python Ingestion Pipeline ]
-  - Extract text from HTM filings
-  - Chunk into 800-word segments with 100-word overlap
-  - Generate embeddings with sentence-transformers
-  - Store vectors in ChromaDB
-        |
-        v
-[ ChromaDB Vector Store ]
-  573 chunks indexed across 3 companies
-        |
-        v
-[ RAG Query Engine ]
-  - Embed user question
-  - Retrieve top-k most relevant chunks
-  - Send chunks + question to Claude Haiku
-  - Return grounded answer with source citations
-        |
-        v
-[ Streamlit UI on AWS EC2 ]
-  - Question input
-  - Grounded answer with citations
-  - Source cards with relevance scores
-  - Company filter
-  - Hallucination guard
-```
+
 
 ## What Makes This RAG Production-Grade
 
