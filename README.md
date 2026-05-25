@@ -49,6 +49,14 @@ flowchart TD
     style F fill:#E1F5EE,stroke:#1D9E75,color:#085041
 ```
 
+## Pipeline Details
+
+- Documents stored in AWS S3 as raw HTM files
+- Python ingestion pipeline extracts text, chunks into 800-word segments with 100-word overlap
+- Embeddings generated with sentence-transformers and indexed into ChromaDB
+- At query time: question embedded, top-k chunks retrieved, sent to Claude Haiku with grounding prompt
+- Every answer includes source document, file name, and relevance score
+- Hallucination guard returns explicit not-found response when answer is outside retrieved chunks
 
 ## What Makes This RAG Production-Grade
 
