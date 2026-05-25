@@ -33,6 +33,21 @@ Total: 573 chunks indexed across 3 documents
 
 ## Architecture
 
+```mermaid
+flowchart TD
+    A[SEC EDGAR Public Filings] --> B[AWS S3 Bucket\nraw HTM documents]
+    B --> C[Python Ingestion Pipeline\nextract, chunk, embed]
+    C --> D[ChromaDB Vector Store\n573 chunks indexed]
+    D --> E[RAG Query Engine\nsimilarity search + Claude API]
+    E --> F[Streamlit UI on AWS EC2\nlive public URL]
+
+    style A fill:#E6F1FB,stroke:#378ADD,color:#0C447C
+    style B fill:#EAF3DE,stroke:#639922,color:#27500A
+    style C fill:#EAF3DE,stroke:#639922,color:#27500A
+    style D fill:#FAEEDA,stroke:#BA7517,color:#633806
+    style E fill:#EEEDFE,stroke:#7F77DD,color:#3C3489
+    style F fill:#E1F5EE,stroke:#1D9E75,color:#085041
+```
 ```text
 SEC EDGAR Public Filings
         |
